@@ -1,16 +1,7 @@
 # DashPoints Backend
 
 ### Descrição
-O **DashPoints** é um sistema de gerenciamento de usuários com um sistema de pontos, permitindo que os usuários sejam cadastrados, acumulem pontos e sejam monitorados através de um dashboard. Esta é a documentação do backend desenvolvido em Django.
-
-## Requisitos
-
-Antes de começar, certifique-se de ter os seguintes requisitos instalados:
-
-- Python 3.8+
-- Django 3.2+
-- PostgreSQL (ou outro banco de dados de sua escolha)
-- Pipenv ou virtualenv (opcional, mas recomendado para gerenciamento de dependências)
+O **DashPoints** é um sistema de gerenciamento de usuários com um sistema de pontos, permitindo que os usuários sejam cadastrados, acumulem pontos e sejam monitorados através de um dashboard.
 
 ## Instalação
 
@@ -44,22 +35,6 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados:
     pip install -r requirements.txt
     ```
 
-4. **Configuração do banco de dados:**
-
-    Atualize o arquivo `settings.py` para incluir as credenciais do seu banco de dados. Um exemplo de configuração para PostgreSQL:
-
-    ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'dashpoints_db',
-            'USER': 'seu_usuario',
-            'PASSWORD': 'sua_senha',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-    ```
 
 5. **Migrações do banco de dados:**
 
@@ -129,5 +104,6 @@ Se você quiser contribuir, siga estas etapas:
 - Faça suas alterações e commit: git commit -m 'Minhas alterações'.
 - Faça o push da branch: git push origin minha-branch.
 - Abra um Pull Request.
+
 ## Licença
 Este projeto está licenciado sob a MIT License.
