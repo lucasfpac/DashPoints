@@ -11,4 +11,5 @@ class PointsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Points
-        fields = ['id', 'user', 'store', 'value', 'date', 'created_at']
+        fields = ['id', 'user', 'customer', 'store', 'value', 'date', 'created_at']
+

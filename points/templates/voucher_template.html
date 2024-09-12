@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher para Retirada de Prêmio</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-color: #2c2c2c;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .voucher-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            color: #ffcc00;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .voucher-details {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .voucher-details p {
+            font-size: 18px;
+        }
+
+        .voucher-details strong {
+            color: #ffcc00;
+        }
+
+        .footer-message {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 20px;
+        }
+
+        .voucher-image {
+            margin-top: 15px;
+        }
+
+        img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="voucher-container">
+        <h1>Voucher para Retirada de Prêmio</h1>
+        <h3>Voucher Numero: {{ id }}</h3>
+
+        <div class="voucher-details">
+            <p><strong>Loja:</strong> {{ store.name }}</p>
+            <p><strong>Cliente:</strong> {{ customer.name }} {{ customer.surname }}</p>
+            <p><strong>Data da compra:</strong> {{ date }}</p>
+            <p><strong>Valor da compra:</strong> R$ {{ value }}</p>
+        </div>
+        <div class="voucher-image">
+            <img src="logo.png" alt="Logo do Evento">
+        </div>
+        <p class="footer-message">Apresente este voucher no shopping para retirar seu prêmio.</p>
+        <p class="footer-message">Obrigado por comprar conosco!</p>
+    </div>
+</body>
+</html>
