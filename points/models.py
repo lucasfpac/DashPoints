@@ -10,6 +10,11 @@ class Points(models.Model):
     value = models.IntegerField(default=0)
     date = models.DateField(default=datetime.date.today)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Point"
+        verbose_name_plural = "Points"
+
 
     def __str__(self):
         return f"{self.user.username} - {self.value} pontos na loja {self.store.name}"
