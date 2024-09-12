@@ -5,6 +5,12 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from django.http import HttpResponse
+
+# View simples para a página inicial de /dashpoints/
+def dashpoints_home(request):
+    return HttpResponse("<h1>Bem-vindo ao Dashpoints</h1>")
+
 # Configurações do Swagger
 schema_view = get_schema_view(
     openapi.Info(
@@ -21,6 +27,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashpoints/', dashpoints_home, name='dashpoints_home'),  # Adicionada esta linha
     path('dashpoints/api/', include('users.urls')), 
     path('dashpoints/api/', include('points.urls')), 
     path('dashpoints/api/', include('customers.urls')),
