@@ -14,5 +14,5 @@ COPY . .
 # Definir as variáveis de ambiente para o Django
 ENV PYTHONUNBUFFERED=1
 
-# Executar o servidor Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Executar migrações antes de iniciar o servidor Django
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
