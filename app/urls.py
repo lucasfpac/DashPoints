@@ -26,7 +26,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('dashpoints/admin/', admin.site.urls),
     path('dashpoints/', dashpoints_home, name='dashpoints_home'),  # Adicionada esta linha
     path('dashpoints/api/', include('users.urls')), 
     path('dashpoints/api/', include('points.urls')), 
