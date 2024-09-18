@@ -3,7 +3,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Customer(models.Model):
     full_name = models.CharField(max_length=100)
-    cpf_cnpj = models.CharField(max_length=18, blank=True, null=True) 
+    cpf_cnpj = models.CharField(unique= True ,max_length=18, blank=True, null=True) 
     email = models.EmailField(max_length=255, blank=True, null=True)
     phone = PhoneNumberField(blank=True, null=True)
     cep = models.CharField(max_length=9, default='00000-000')
