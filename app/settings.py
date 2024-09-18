@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'customers',
     'points',
     'corsheaders',
-    'django_cpf_cnpj',
-    "phonenumber_field",
     'drf_yasg',
 ]
 

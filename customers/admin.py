@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Customer
 
-@admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'cpf', 'cnpj', 'phone', 'address', 'dob')
-    search_fields = ['name', 'surname', 'cpf', 'cnpj', 'phone', 'address', 'dob']
-# admin.site.register(Customer, CustomerAdmin)    
+    list_display = ('full_name', 'cpf_cnpj', 'email', 'phone', 'cep', 'city', 'uf', 'missingstore')
+    search_fields = ('full_name', 'cpf_cnpj', 'email', 'city')
+
+admin.site.register(Customer, CustomerAdmin)
