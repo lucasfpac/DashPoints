@@ -185,3 +185,8 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://lucasfortunato.com.br',
+    'https://www.lucasfortunato.com.br',
+]
