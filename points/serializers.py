@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from .models import Points, Store
+from .models import Purchases, Store
 
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
         fields = ['id', 'name', 'address']
 
-class PointsSerializer(serializers.ModelSerializer):
+class PurchasesSerializer(serializers.ModelSerializer):
     store = serializers.PrimaryKeyRelatedField(queryset=Store.objects.all())  # Dropdown de lojas
 
     class Meta:
-        model = Points
+        model = Purchases
         fields = ['id', 'user', 'customer', 'store', 'value', 'date', 'created_at']
 

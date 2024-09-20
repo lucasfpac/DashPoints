@@ -1,14 +1,14 @@
 from rest_framework.permissions import AllowAny #remove after
 from rest_framework import viewsets
-from .models import Points, Store
-from .serializers import PointsSerializer, StoreSerializer
+from .models import Purchases, Store
+from .serializers import PurchasesSerializer, StoreSerializer
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-class PointsViewSet(viewsets.ModelViewSet):
-    queryset = Points.objects.all()
-    serializer_class = PointsSerializer
+class PurchasesViewSet(viewsets.ModelViewSet):
+    queryset = Purchases.objects.all()
+    serializer_class = PurchasesSerializer
     permission_classes = [AllowAny] 
 
 
@@ -18,8 +18,8 @@ class StoreViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny] 
 
 def generate_voucher_pdf(request, voucher_id):
-    # Get the voucher data (replace Points with your actual model)
-    voucher = Points.objects.get(id=voucher_id)
+    # Get the voucher data (replace Purchases with your actual model)
+    voucher = Purchases.objects.get(id=voucher_id)
     
     # Prepare the context for the PDF (data to be displayed)
     context = {
