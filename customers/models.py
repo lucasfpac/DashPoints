@@ -10,14 +10,11 @@ class Customer(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     uf = models.CharField(max_length=2)
     missingstore = models.CharField(max_length=100, blank=True, null=True)
-    selected_store = models.ForeignKey('Store', on_delete=models.SET_NULL, null=True, blank=True)
+    selected_store = models.ForeignKey('points.Store', on_delete=models.CASCADE, null=True, blank=True, related_name='store')
 
     def __str__(self):
         return f"{self.full_name}"
 
-class Store(models.Model):
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
+    def get_selected_store(self):
+        from points.models import Store  # Importação movida para cá
+        return Store.objects.filter(id=self.selected_store.id).first() if self.selected_store else None
