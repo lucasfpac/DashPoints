@@ -10,7 +10,7 @@ class Customer(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     uf = models.CharField(max_length=2)
     missingstore = models.CharField(max_length=100, blank=True, null=True)
-    selected_store = models.ForeignKey('points.Store', on_delete=models.CASCADE, null=True, blank=True, related_name='store')
+    selected_store = models.ForeignKey('points.Store', on_delete=models.CASCADE, null=True, blank=True, related_name='customers')
 
     def __str__(self):
         return f"{self.full_name}"
