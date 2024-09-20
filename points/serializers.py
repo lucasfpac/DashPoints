@@ -11,5 +11,5 @@ class PurchasesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Purchases
-        fields = ['id', 'user', 'customer', 'store', 'value', 'date', 'created_at']
+        fields = ['id', 'customer', 'store', 'value', 'date', 'created_at']
 

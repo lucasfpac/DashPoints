@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import PurchasesViewSet, StoreViewSet, generate_voucher_pdf
 
 router = DefaultRouter()
-router.register(r'Purchases', PurchasesViewSet)
-router.register(r'stores', StoreViewSet)  # Rota para lojas
+router.register(r'purchases', PurchasesViewSet)
+router.register(r'stores', StoreViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
