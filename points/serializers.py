@@ -7,9 +7,11 @@ class StoreSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'address']
 
 class PurchasesSerializer(serializers.ModelSerializer):
-    store = serializers.PrimaryKeyRelatedField(queryset=Store.objects.all())  # Dropdown de lojas
+    store = serializers.PrimaryKeyRelatedField(queryset=Store.objects.all())
+    store_name = serializers.CharField(source='store.name', read_only=True)
+
 
     class Meta:
         model = Purchases
-        fields = ['id', 'customer', 'invoice', 'store', 'value', 'date', 'created_at']
+        fields = ['id', 'customer', 'date', 'invoice', 'value', 'store', 'store_name', 'created_at']
 
