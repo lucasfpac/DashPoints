@@ -8,7 +8,7 @@ class Customer(models.Model):
     phone = PhoneNumberField(blank=True, null=True)
     cep = models.CharField(max_length=9, default='00000-000')
     city = models.CharField(max_length=50, blank=True, null=True)
-    uf = models.CharField(max_length=2)
+    uf = models.CharField(max_length=2, default="SP")
     missingstore = models.CharField(max_length=100, blank=True, null=True)
     selected_store = models.ForeignKey('purchases.Store', on_delete=models.CASCADE, null=True, blank=True, related_name='customers')
 
