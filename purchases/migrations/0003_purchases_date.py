@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('points', '0002_store_points_store'),
+        ('purchases', '0002_store_purchases_store'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='points',
+            model_name='purchases',
             name='date',
             field=models.DateField(default=datetime.date.today),
         ),

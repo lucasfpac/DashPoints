@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Customer
-from points.models import Purchases
+from purchases.models import Purchases
 
 class PurchasesSerializer(serializers.ModelSerializer):
     class Meta:

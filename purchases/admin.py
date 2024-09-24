@@ -1,10 +1,10 @@
 from django.contrib import admin
-from points.models import Purchases, Store
+from purchases.models import Purchases, Store
 
-class PointAdmin(admin.ModelAdmin):
+class PurchaseAdmin(admin.ModelAdmin):
     list_display = ('customer','store', 'value', 'created_at')
     search_fields = ['customer','store', 'value', 'created_at']
-admin.site.register(Purchases, PointAdmin)    
+admin.site.register(Purchases, PurchaseAdmin)    
 
 class StoreAdmin(admin.ModelAdmin):
     list_display = ('name', 'address')

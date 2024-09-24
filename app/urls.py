@@ -29,7 +29,7 @@ urlpatterns = [
     path('dashpoints/admin/', admin.site.urls),
     path('dashpoints/', dashpoints_home, name='dashpoints_home'),  # Adicionada esta linha
     path('dashpoints/api/', include('users.urls')), 
-    path('dashpoints/api/', include('points.urls')), 
+    path('dashpoints/api/', include('purchases.urls')), 
     path('dashpoints/api/', include('customers.urls')),
 
     # URLs de autenticação JWT

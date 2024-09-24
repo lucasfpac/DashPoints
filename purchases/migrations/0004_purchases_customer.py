@@ -8,12 +8,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('customers', '0001_initial'),
-        ('points', '0003_points_date'),
+        ('purchases', '0003_purchases_date'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='points',
+            model_name='purchases',
             name='customer',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='customers.customer'),
         ),
