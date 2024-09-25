@@ -31,6 +31,7 @@ urlpatterns = [
     path('dashpoints/api/', include('users.urls')), 
     path('dashpoints/api/', include('purchases.urls')), 
     path('dashpoints/api/', include('customers.urls')),
+    path('dashpoints/api/', include('events.urls')),
 
     # URLs de autenticação JWT
     path('dashpoints/api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

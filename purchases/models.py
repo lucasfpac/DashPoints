@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from events.models import Events
 
 class Store(models.Model):
     name = models.CharField(max_length=255)
@@ -15,6 +16,7 @@ class Purchases(models.Model):
     invoice = models.CharField(max_length=255, default="N/A") 
     value = models.DecimalField(max_digits=10, decimal_places=2)  
     date = models.DateField(default=datetime.date.today) 
+    Events = models.ForeignKey(Events, on_delete=models.CASCADE) 
     created_at = models.DateTimeField(auto_now_add=True)  
     
     class Meta:

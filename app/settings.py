@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'customers',
     'purchases',
     'corsheaders',
+    'events',
     'drf_yasg',
 ]
 
