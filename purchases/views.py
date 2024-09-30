@@ -26,7 +26,7 @@ class PurchasesViewSet(viewsets.ModelViewSet):
                 serializer = self.get_serializer(purchases, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
             else:
-                return Response({"detail": "No purchases found for this customer."}, status=status.HTTP_404_NOT_FOUND)
+                return Response({"detail": "No purchases found for this customer."}, status=status.HTTP_200_OK)
         else:
             # Se não houver customer_id na query string, retorna todas as compras
             return super().list(request, *args, **kwargs)
