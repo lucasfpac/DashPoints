@@ -15,4 +15,4 @@ COPY . .
 ENV PYTHONUNBUFFERED=1
 
 # Executar migrações antes de iniciar o servidor Django
-CMD ["sh", "-c", "python manage.py migrate && python manage.py makemigrations && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python3 manage.py migrate && python3 manage.py makemigrations && python3 manage.py runserver 0.0.0.0:8000"]
