@@ -14,7 +14,8 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    # Remova esta linha
+    # command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -27,5 +28,6 @@ services:
       DB_PASSWORD: mypassword
       DB_HOST: db
       DB_PORT: 5432
+
 volumes:
   postgres_data:
