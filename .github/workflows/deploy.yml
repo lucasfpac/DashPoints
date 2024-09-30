@@ -3,7 +3,7 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - main  # Deploy apenas na branch main
+      - main
 
 jobs:
   deploy:
@@ -11,13 +11,20 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.4
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Deploy to server
+    - name: Deploy to VPS
       run: |
-        ssh -o StrictHostKeyChecking=no root@195.7.6.20 'cd /var/www/DashPoints && git pull origin main && docker-compose up -d --build'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd /var/www/DashPoints
+          git pull origin main
+          docker-compose down
+          docker-compose up --build -d
+          docker-compose exec web python manage.py migrate
+          docker-compose exec web python manage.py collectstatic --noinput
+        EOF
