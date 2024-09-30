@@ -22,10 +22,10 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
           cd /var/www/DashPoints
-
+          git stash || true  # Tentar stash as mudanças locais
           git pull origin main
           docker-compose down
           docker-compose up --build -d
-          python manage.py migrate
-          python manage.py collectstatic --noinput
+          python3 manage.py migrate
+          python3 manage.py collectstatic --noinput
         EOF
