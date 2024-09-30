@@ -14,5 +14,8 @@ COPY . .
 # Definir as variáveis de ambiente para o Django
 ENV PYTHONUNBUFFERED=1
 
-# Executar migrações antes de iniciar o servidor Django
+# Expor a porta
+EXPOSE 8000
+
+# Executar migrações e iniciar o servidor
 CMD ["sh", "-c", "python3 manage.py migrate && python3 manage.py makemigrations && python3 manage.py runserver 0.0.0.0:8000"]
