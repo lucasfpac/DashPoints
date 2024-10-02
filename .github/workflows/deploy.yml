@@ -22,7 +22,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
           cd /var/www/DashPoints
-          git stash || true  # Tentar stash as mudanças locais
+          git stash || true 
+          git clean -fd  
           git pull origin main
           docker-compose down
           docker-compose up --build -d
