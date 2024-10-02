@@ -204,3 +204,18 @@ CSRF_TRUSTED_ORIGINS = [
     'https://lucasfortunato.com.br',
     'https://www.lucasfortunato.com.br',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "DashPoints",
+    "welcome_sign": "Welcome to the DashPoints",
+    "copyright": "LucasFPAC",
+    "show_ui_builder": False,
+
+
+    "topmenu_links": [
+        {"app": "customers"}, {"app": "events"}, {"app": "purchases"},
+        {"name": "Frontend", "url": "http://localhost:5173/", "new_window": True},
+
+
+    ]
+}
