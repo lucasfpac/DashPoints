@@ -1,27 +1,40 @@
 # DashPoints Backend
 
-### Descrição
-O **DashPoints** é um sistema de gerenciamento de usuários com um sistema de pontos, permitindo que os usuários sejam cadastrados, acumulem pontos e sejam monitorados através de um dashboard.
+## Description
+**DashPoints** is a purchase and points management system where users can accumulate points based on purchases made and exchange them for vouchers. The system features an administrative panel, REST APIs, and is prepared for integration with modern frontend systems.
 
-## Instalação
+## Technologies Used
+- **Python 3.9**
+- **Django 4.2**
+- **Django REST Framework**
+- **PostgreSQL** for the database.
+- **Docker and Docker Compose** for managing the development and production environment.
+- **Nginx** to serve the application in production.
+- **GitHub Actions** for CI/CD, including automatic deployment on the VPS.
+- **Swagger** for API documentation.
+- **CORS Headers** for integration with frontend applications.
+<!-- - **JWT** for secure authentication. -->
+<!-- - **Phonenumbers** for phone number validation. -->
 
-1. **Clone este repositório:**
+## Installation and Configuration
+
+1. **Clone this repository:**
 
     ```bash
-    git clone https://github.com/seu-usuario/dashpoints-backend.git
+    git clone https://github.com/lucasfpac/dashpoints-backend.git
     cd dashpoints-backend
     ```
 
-2. **Crie e ative o ambiente virtual:**
+2. **Create and activate the virtual environment:**
 
-    Se estiver usando `pipenv`:
+    Using `pipenv`:
 
     ```bash
     pipenv install
     pipenv shell
     ```
 
-    Ou, se estiver usando `virtualenv`:
+    Or, if using `virtualenv`:
 
     ```bash
     virtualenv venv
@@ -29,81 +42,178 @@ O **DashPoints** é um sistema de gerenciamento de usuários com um sistema de p
     venv\Scripts\activate  # Windows
     ```
 
-3. **Instale as dependências:**
+3. **Install dependencies:**
 
     ```bash
     pip install -r requirements.txt
     ```
 
+4. **Docker Configuration:**
 
-5. **Migrações do banco de dados:**
+    If you are using Docker, follow these steps:
 
-    Após configurar o banco de dados, aplique as migrações para criar as tabelas:
+    - **Create and start the containers:**
+
+        ```bash
+        sudo docker-compose up --build -d
+        ```
+
+    - **Run migrations and additional commands:**
+
+        ```bash
+        docker-compose exec web python manage.py makemigrations
+        docker-compose exec web python manage.py migrate
+        docker-compose exec web python manage.py createsuperuser  # Create optional superuser
+        ```
+
+5. **Database Migrations:**
+
+    Apply migrations to create the tables:
 
     ```bash
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
-6. **Crie um superusuário (opcional):**
+6. **Start the server:**
 
-    Para acessar o painel administrativo do Django, você pode criar um superusuário:
-
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-7. **Inicie o servidor:**
-
-    Por fim, execute o servidor de desenvolvimento:
+    Run the development server:
 
     ```bash
     python manage.py runserver
     ```
 
-    O backend estará rodando no endereço: `http://127.0.0.1:8000/`
+    Access the backend at `http://127.0.0.1:8000/`.
 
-## Funcionalidades
+## Main Features
 
-- **Autenticação de Usuário**: Registre, faça login e gerencie usuários.
-- **Sistema de Pontuação**: Adicione e subtraia pontos de usuários.
-- **Dashboard de Monitoramento**: Exibe o ranking dos usuários com mais pontos e estatísticas gerais.
-- **API REST**: Utilizando Django REST Framework para comunicação com o frontend React.
+- **Purchase Management**: Register purchases associated with each user.
+- **Points System**: Based on rules defined per event, accumulated points can be exchanged for vouchers.
+- **Administrative Panel**: Interface to view and manage purchases, points, and users.
+- **Report Generation**: Detailed reports of purchases and points.
+- **API Documentation**: Access the API documentation via Swagger at `http://127.0.0.1:8000/dashpoints/swagger/`.
+- **Frontend Integration**: Well-structured REST API for communication with frontend systems.
+<!-- - **User Authentication System**: Login and registration of users using JWT. -->
 
-## Endpoints
+## API Endpoints
 
-A seguir estão os principais endpoints da API:
+### Customers
+- **GET** `/customers/`  
+  List all customers.
+  
+- **POST** `/customers/`  
+  Create a new customer.
 
-- `POST /api/register/`: Registrar um novo usuário.
-- `POST /api/login/`: Fazer login.
-- `GET /api/users/`: Listar todos os usuários.
-- `GET /api/user/<id>/`: Detalhes de um usuário.
-- `POST /api/user/<id>/add-points/`: Adicionar pontos a um usuário.
-- `GET /api/dashboard/`: Exibir estatísticas do dashboard (usuário com mais pontos, média de pontos, etc.).
+- **GET** `/customers/cpf_cnpj/{cpf_cnpj}/`  
+  Retrieve a customer by CPF or CNPJ.
 
-## Estrutura do Projeto
+- **GET** `/customers/{id}/`  
+  Customer details.
 
-- `core/`: Aplicação principal.
-- `users/`: Módulo responsável pelo gerenciamento de usuários.
-- `points/`: Módulo responsável pelo gerenciamento do sistema de pontos.
-- `dashboard/`: Lida com o cálculo e exibição de dados para o dashboard.
-- `api/`: Configuração da API REST usando Django REST Framework.
+- **PUT** `/customers/{id}/`  
+  Update customer information.
 
-## Testes
+- **PATCH** `/customers/{id}/`  
+  Partially update customer information.
 
-Para rodar os testes:
+- **DELETE** `/customers/{id}/`  
+  Delete a customer.
 
-```bash
-python manage.py test
-```
+### Events
+- **GET** `/events/`  
+  List all events.
+  
+- **POST** `/events/`  
+  Create a new event.
 
-## Contribuição
-Se você quiser contribuir, siga estas etapas:
+- **GET** `/events/{id}/`  
+  Event details.
 
-- Faça um fork deste repositório.
-- Crie uma nova branch: git checkout -b minha-branch.
-- Faça suas alterações e commit: git commit -m 'Minhas alterações'.
-- Faça o push da branch: git push origin minha-branch.
-- Abra um Pull Request.
+- **PUT** `/events/{id}/`  
+  Update event information.
 
-## Licença
-Este projeto está licenciado sob a MIT License.
+- **PATCH** `/events/{id}/`  
+  Partially update event information.
+
+- **DELETE** `/events/{id}/`  
+  Delete an event.
+
+### Purchases
+- **GET** `/purchases/`  
+  List all purchases.
+  
+- **POST** `/purchases/`  
+  Create a new purchase.
+
+- **GET** `/purchases/{id}/`  
+  Purchase details.
+
+- **PUT** `/purchases/{id}/`  
+  Update purchase information.
+
+- **PATCH** `/purchases/{id}/`  
+  Partially update purchase information.
+
+- **DELETE** `/purchases/{id}/`  
+  Delete a purchase.
+
+### Stores
+- **GET** `/stores/`  
+  List all stores.
+  
+- **POST** `/stores/`  
+  Create a new store.
+
+- **GET** `/stores/{id}/`  
+  Store details.
+
+- **PUT** `/stores/{id}/`  
+  Update store information.
+
+- **PATCH** `/stores/{id}/`  
+  Partially update store information.
+
+- **DELETE** `/stores/{id}/`  
+  Delete a store.
+
+<!-- ## Directory Structure
+
+- `core/`: Main application with general configurations.
+- `purchases/`: Module responsible for registering and managing purchases and points.
+- `api/`: Configuration and endpoints of the API.
+- `dashboard/`: Panel for displaying aggregated data of purchases and users. -->
+
+<!-- ## Tests
+
+- **Automated Test Setup:**
+  This project follows best practices with unit and integration tests, ensuring that new implementations do not break existing functionality.
+
+- **Run Tests:**
+
+    ```bash
+    python manage.py test
+    ``` -->
+
+- **Integration with Git Hooks:**
+  The project is set up to run automated tests before pushing to `main`, ensuring that only validated code is integrated.
+
+## Best Practices and Deployment
+
+The project follows best development practices:
+
+- **CI/CD**: Pipeline configured with GitHub Actions for continuous deployment on the VPS, ensuring automatic integration of code from the `main` branch.
+- **Branching Model**: Each new feature should be developed in its own branch and merged through Pull Requests, undergoing code review.
+- **Automatic Deployment**: After merging into the `main` branch, automatic deployment on the VPS is done, with Docker commands to rebuild containers and migrate the database.
+
+## Contribution
+
+If you wish to contribute:
+
+1. Fork this repository.
+2. Create a branch with the new feature: `git checkout -b my-feature`.
+3. Commit your changes: `git commit -m 'Add new feature'`.
+4. Push to the branch: `git push origin my-feature`.
+5. Open a Pull Request.
+
+## License
+This project is licensed under the MIT License.
